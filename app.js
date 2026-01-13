@@ -111,6 +111,14 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
+// Detener todas las notas cuando la ventana pierde el foco
+function stopAllNotes() {
+    Object.keys(activeOscillators).forEach(note => {
+        stopNote(note);
+    });
+}
+window.addEventListener('blur', stopAllNotes);
+
 document.querySelectorAll('.white-key, .black-key').forEach(key => {
     // mousedown / touchstart sirven como "gesto de usuario" para desbloquear audio
     const press = (e) => {
